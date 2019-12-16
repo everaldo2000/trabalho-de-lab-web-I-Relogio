@@ -1,0 +1,19 @@
+div{
+	background: url(../img/fundo.png);
+}
+*{
+	color:yellow;
+	font-family: Jazz LET, fantasy;
+}
+input{
+	color: yellow;
+}
+form{
+	background-color:red;
+}
+table {
+	background-color: red;
+}
+h3{
+	background-color: red;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/relogio.css">
+  
+    <title>DA HORA</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="js/relogio.js"></script>
+    <input type="hidden" id="produto_id_delete">
+    <input type="hidden" id="compra_id_delete">
+    <input type="hidden" id="compra_tudo_delete">
+    <imput type="hidden" id="produto_id_update">
+
+    <!-- tela padrão -->
+    <div class="container" id="tela_padrao" align="center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Relógios e Presentes</h1>
+                <h2>DA HORA</h2>
+                <br>
+                <span>
+                <input type="button" value="Incluir Itens" class="btn btn-lg btn-primary form-control" onclick="tela_incluir()">
+            </span>
+                <br><br>
+                <input type="button" value="Ver Produtos" class="btn btn-lg btn-primary form-control" onclick="tela_listar()">
+                <br><br>
+                <input type="button" value="Carrinho de Compras" class="btn btn-lg btn-primary form-control" onclick="tela_comprar()">
+            </div>        
+        </div>
+    </div>
+
+    <!-- tela incluir -->
+	<div class="container" id="tela_inclusao" hidden>
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <h2>Incluir Relógio</h2>
+                <br>
+                <form>
+                <h4>Nome</h4>
+                <input type="text" class="form-control" id="produto_nome">
+                <br>
+                <h4>Preço</h4>
+                <input type="text" class="form-control" id="produto_preco">
+                <br>
+                <h4>Quantidade</h4>
+                <input type="text" class="form-control" id="produto_estoque">
+                <br>
+                <br>
+            </form>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Incluir" onclick="produto_insert();"><br><br>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_incluir_mostrar_tela_padrao();"><br><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- tela listar -->
+    <div class="container" id="tela_listar" hidden align="center">
+        <script type="text/javascript">produto_view();</script>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Lista de Relógios</h2><br><br>
+                <table class="table">
+                    <thead>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Quantidade em Estoque</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                        <tr></tr>
+                    </thead>
+                    <tbody id = "produto_listagem"></tbody>
+                </table>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_listar_mostrar_tela_padrao();">
+            </div>
+        </div>
+    </div>
+
+    <!-- tela compras de relogio -->
+    <div class="container" id="tela_comprar" hidden>
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <h2>Comprar seu Relógio</h2>
+                <br>
+                <form>
+                <h4>ID do Relógio</h4>
+                <input type="text" class="form-control" id="id_prod_compra">
+                <br>
+                <h4>Nome do Relógio</h4>
+                <input type="text" class="form-control" id="nome_compra">
+                <br>
+                <h4>Preço do Relógio</h4>
+                <input type="text" class="form-control" id="valor_unit_compra">
+                <br>
+                <h4>Quantidade</h4>
+                <input type="text" class="form-control" id="qtd_compra">
+                <br>
+            </form>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Incluir" onclick="compra_insert();"><br><br>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_comprar_mostrar_tela_listar();"><br><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- tela carrinho de compras -->
+    <div class="container" id="tela_carrinho" hidden align="center">
+        <script type="text/javascript">compra_view();</script>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Carrinho de Compras</h2><br><br>
+                <table class="table">
+                <form>
+                    <thead>
+                        <th>ID do Produto</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <tr></tr>
+                    </thead>
+                    <tbody id = "compra_listagem"></tbody>
+                </table><
+                <h3>Valor Total do Carrinho:</h3><h3>R$ <input type="text" id="total"><br><br><br></h3>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Finalizar Compra" onclick="finalizar_compra();"><br><br>
+                <input type="button" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="tela_carrinho_mostrar_tela_padrao();">
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>produto_view();</script>
+
+</body>
+
+</html>
